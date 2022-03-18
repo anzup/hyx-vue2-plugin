@@ -1,12 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
-
+const NODE_ENV = process.env.NODE_ENV;
 module.exports = {
-  entry: './src/main.js',
+  entry: NODE_ENV == 'development' ? './src/main.js' : './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'hyx-vue2-plugin.js'
+    filename: 'hyx-vue2-plugin.js',
+    library: 'hyx-vue2-plugin',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
